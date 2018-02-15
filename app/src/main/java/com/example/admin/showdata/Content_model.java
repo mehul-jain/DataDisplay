@@ -4,12 +4,12 @@ package com.example.admin.showdata;
  * Created by admin on 15-02-2018.
  */
 
-public class content_model {
+public class Content_model {
     private String title;
     private String Description;
     public int imageId;
 
-    public content_model(String title, String description, int imageId) {
+    public Content_model(String title, String description, int imageId) {
         this.title = title;
         Description = description;
         this.imageId = imageId;
