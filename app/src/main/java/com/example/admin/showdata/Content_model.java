@@ -46,22 +46,22 @@ public class Content_model {
     // mock function to test
     public static List<Content_model> fill_data(){
         List<Content_model> list=new ArrayList<>();
-        list.add(new Content_model("Sample Title here ", "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer ut tortor quis dolor ornare  ", R.drawable.Movie_night));
-        list.add(new Content_model("Sample Title here ", "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer ut tortor quis dolor ornare  ", R.drawable.Movie_night));
-        list.add(new Content_model("Sample Title here ", "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer ut tortor quis dolor ornare  ", R.drawable.Movie_night));
-        list.add(new Content_model("Sample Title here ", "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer ut tortor quis dolor ornare  ", R.drawable.Movie_night));
-        list.add(new Content_model("Sample Title here ", "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer ut tortor quis dolor ornare  ", R.drawable.Movie_night));
-        list.add(new Content_model("Sample Title here ", "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer ut tortor quis dolor ornare  ", R.drawable.Movie_night));
-        list.add(new Content_model("Sample Title here ", "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer ut tortor quis dolor ornare  ", R.drawable.Movie_night));
-        list.add(new Content_model("Sample Title here ", "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer ut tortor quis dolor ornare  ", R.drawable.Movie_night));
-        list.add(new Content_model("Sample Title here ", "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer ut tortor quis dolor ornare  ", R.drawable.Movie_night));
-        list.add(new Content_model("Sample Title here ", "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer ut tortor quis dolor ornare  ", R.drawable.Movie_night));
-        list.add(new Content_model("Sample Title here ", "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer ut tortor quis dolor ornare  ", R.drawable.Movie_night));
-        list.add(new Content_model("Sample Title here ", "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer ut tortor quis dolor ornare  ", R.drawable.Movie_night));
-        list.add(new Content_model("Sample Title here ", "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer ut tortor quis dolor ornare  ", R.drawable.Movie_night));
-        list.add(new Content_model("Sample Title here ", "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer ut tortor quis dolor ornare  ", R.drawable.Movie_night));
-        list.add(new Content_model("Sample Title here ", "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer ut tortor quis dolor ornare  ", R.drawable.Movie_night));
-        list.add(new Content_model("Sample Title here ", "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer ut tortor quis dolor ornare  ", R.drawable.Movie_night));
+        list.add(new Content_model("Sample Title here ", "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer ut tortor quis dolor ornare  ", R.drawable.movie_night));
+        list.add(new Content_model("Sample Title here ", "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer ut tortor quis dolor ornare  ", R.drawable.movie_night));
+        list.add(new Content_model("Sample Title here ", "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer ut tortor quis dolor ornare  ", R.drawable.movie_night));
+        list.add(new Content_model("Sample Title here ", "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer ut tortor quis dolor ornare  ", R.drawable.movie_night));
+        list.add(new Content_model("Sample Title here ", "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer ut tortor quis dolor ornare  ", R.drawable.movie_night));
+        list.add(new Content_model("Sample Title here ", "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer ut tortor quis dolor ornare  ", R.drawable.movie_night));
+        list.add(new Content_model("Sample Title here ", "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer ut tortor quis dolor ornare  ", R.drawable.movie_night));
+        list.add(new Content_model("Sample Title here ", "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer ut tortor quis dolor ornare  ", R.drawable.movie_night));
+        list.add(new Content_model("Sample Title here ", "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer ut tortor quis dolor ornare  ", R.drawable.movie_night));
+        list.add(new Content_model("Sample Title here ", "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer ut tortor quis dolor ornare  ", R.drawable.movie_night));
+        list.add(new Content_model("Sample Title here ", "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer ut tortor quis dolor ornare  ", R.drawable.movie_night));
+        list.add(new Content_model("Sample Title here ", "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer ut tortor quis dolor ornare  ", R.drawable.movie_night));
+        list.add(new Content_model("Sample Title here ", "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer ut tortor quis dolor ornare  ", R.drawable.movie_night));
+        list.add(new Content_model("Sample Title here ", "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer ut tortor quis dolor ornare  ", R.drawable.movie_night));
+        list.add(new Content_model("Sample Title here ", "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer ut tortor quis dolor ornare  ", R.drawable.movie_night));
+        list.add(new Content_model("Sample Title here ", "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer ut tortor quis dolor ornare  ", R.drawable.movie_night));
         return list;
     }
 }
