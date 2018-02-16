@@ -44,18 +44,9 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             return content_list.size();
     }
 
-    @Override
-    public void onAttachedToRecyclerView(RecyclerView recyclerView) {
-        super.onAttachedToRecyclerView(recyclerView);
-    }
 
-    // insert a new data to list
-    public void insert(int position,ContentModel content)
-    {
-        content_list.add(position,content);
-        notifyItemInserted(position);
-    }
-    public class ViewHolder extends RecyclerView.ViewHolder {
+
+    protected class ViewHolder extends RecyclerView.ViewHolder {
         ImageView imageView;
         TextView title;
         TextView description;

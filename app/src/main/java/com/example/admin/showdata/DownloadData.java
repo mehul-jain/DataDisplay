@@ -3,13 +3,16 @@ package com.example.admin.showdata;
 import android.util.Log;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,7 +23,7 @@ import java.util.List;
 
 public class DownloadData {
     HttpURLConnection connection;
-    List<ContentModel> data_list;
+    List<ContentModel> dataList;
 
 
     public List<ContentModel> getdatafromurl(String passed_url){
@@ -31,20 +34,24 @@ public class DownloadData {
             // setting connection
             connection = (HttpURLConnection) url.openConnection();
             // setting stream
-            InputStream in = new BufferedInputStream(connection.getInputStream());
-            BufferedReader reader = new BufferedReader(new InputStreamReader(in));
 
-            String line;
-            while ((line = reader.readLine()) != null) {
-                result.append(line);
-            }
+            try(
+                    InputStream in = new BufferedInputStream(connection.getInputStream());
+                    BufferedReader reader = new BufferedReader(new InputStreamReader(in));
+            ){
+                String line;
+                while ((line = reader.readLine()) != null) {
+                    result.append(line);
+                }
+            };
+
+
             // convert whole response to string
             String resultStr=result.toString();
-            Log.d("resultStr",resultStr);
             try {
                 // getting array from string
                 JSONArray jsonArray= new JSONArray(resultStr);
-                data_list= new ArrayList<>();
+                dataList = new ArrayList<>();
                 // parse array
                 for (int i=0; i< jsonArray.length();i++)
                 {
@@ -54,19 +61,24 @@ public class DownloadData {
                     content_model.setTitle(jsonObject.getString("title"));
                     content_model.setDescription(jsonObject.getString("description"));
                     content_model.setImageId(R.drawable.movie_night);
-                    data_list.add(content_model);
+                    dataList.add(content_model);
                 }
 
-            } catch (Throwable t) {
-                Log.d("Result String", "Could not parse malformed JSON: \"" + resultStr + "\"");
             }
-        }catch( Exception e) {
-            e.printStackTrace();
+            catch (JSONException e) {
+                Log.e("JSON_ERROR", "Exception while fetching data: ", e);
+            }
+        }catch( MalformedURLException e) {
+            Log.e("URL_ERROR", "Exception while fetching data: ", e);
+        }
+        catch (IOException e)
+        {
+            Log.e("IO_ERROR", "Exception while fetching data: ", e);
         }
         finally {
             connection.disconnect();
         }
 
-             return data_list;
+             return dataList;
     }
 }

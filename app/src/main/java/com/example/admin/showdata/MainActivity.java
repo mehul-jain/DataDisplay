@@ -1,5 +1,6 @@
 package com.example.admin.showdata;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v4.widget.ContentLoadingProgressBar;
 import android.support.v7.app.AppCompatActivity;
@@ -7,6 +8,7 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.View;
 
 import java.util.List;
 
@@ -51,6 +53,12 @@ public class MainActivity extends AppCompatActivity {
             List<ContentModel> data= downloadData.getdatafromurl(url[0]);
             return data;
         }
+    }
+
+    public void sendMessage(View view)
+    {
+        Intent intent = new Intent(MainActivity.this, ProfileActivity.class);
+        startActivity(intent);
     }
 
 }
