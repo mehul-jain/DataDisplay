@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/text_view_name"
+        android:text="Name:"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:padding="20dp"
+        />
+    <TextView
+        android:id="@+id/name"
+        android:padding="25dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/text_view_name"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <TextView
+        android:id="@+id/text_view_age"
+        android:text="Age:"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:padding="20dp"
+        android:layout_below="@+id/text_view_name"
+        />
+    <TextView
+        android:id="@+id/age"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/text_view_name"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_toRightOf="@+id/text_view_age"
+        android:padding="25dp"
+        />
+    <TextView
+        android:id="@+id/text_view_mobile"
+        android:text="Mobile:"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:padding="20dp"
+        android:layout_below="@+id/text_view_age"
+        />
+    <TextView
+        android:id="@+id/mobile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/text_view_age"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_toRightOf="@+id/text_view_age"
+        android:padding="25dp"
+        />
+</RelativeLayout>
