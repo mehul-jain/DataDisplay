@@ -26,7 +26,7 @@ public class DownloadData {
     List<ContentModel> dataList;
 
 
-    public List<ContentModel> getdatafromurl(String passed_url){
+    public List<ContentModel> getdatafromurl(String passed_url) {
         StringBuilder result = new StringBuilder();
         try {
             // getting url
@@ -35,26 +35,24 @@ public class DownloadData {
             connection = (HttpURLConnection) url.openConnection();
             // setting stream
 
-            try(
+            try (
                     InputStream in = new BufferedInputStream(connection.getInputStream());
                     BufferedReader reader = new BufferedReader(new InputStreamReader(in));
-            ){
+            ) {
                 String line;
                 while ((line = reader.readLine()) != null) {
                     result.append(line);
                 }
-            };
-
+            }
 
             // convert whole response to string
-            String resultStr=result.toString();
+            String resultStr = result.toString();
             try {
                 // getting array from string
-                JSONArray jsonArray= new JSONArray(resultStr);
+                JSONArray jsonArray = new JSONArray(resultStr);
                 dataList = new ArrayList<>();
                 // parse array
-                for (int i=0; i< jsonArray.length();i++)
-                {
+                for (int i = 0; i < jsonArray.length(); i++) {
                     ContentModel content_model = new ContentModel();
                     // getting  individual object
                     JSONObject jsonObject = jsonArray.getJSONObject(i);
@@ -64,21 +62,17 @@ public class DownloadData {
                     dataList.add(content_model);
                 }
 
-            }
-            catch (JSONException e) {
+            } catch (JSONException e) {
                 Log.e("JSON_ERROR", "Exception while fetching data: ", e);
             }
-        }catch( MalformedURLException e) {
+        } catch (MalformedURLException e) {
             Log.e("URL_ERROR", "Exception while fetching data: ", e);
-        }
-        catch (IOException e)
-        {
+        } catch (IOException e) {
             Log.e("IO_ERROR", "Exception while fetching data: ", e);
-        }
-        finally {
+        } finally {
             connection.disconnect();
         }
 
-             return dataList;
+        return dataList;
     }
 }

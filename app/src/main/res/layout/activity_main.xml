@@ -6,20 +6,19 @@
     android:layout_height="match_parent"
     tools:context="com.example.admin.showdata.MainActivity">
 
-    <RelativeLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:showIn="@layout/activity_main"
-        tools:context=".MainActivity">
+        tools:context=".MainActivity"
+        tools:showIn="@layout/activity_main">
 
         <Button
             android:id="@+id/button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:onClick="sendMessage"
             android:layout_alignParentRight="true"
+            android:onClick="sendMessage"
             android:padding="10dp"
             android:text="profile" />
 
@@ -28,16 +27,16 @@
             style="?android:attr/progressBarStyleLarge"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:layout_marginLeft="150dp"
-            android:layout_marginTop="10dp"
+            android:layout_centerHorizontal="true"
             android:layout_gravity="center_vertical"
-             />
+            android:layout_marginTop="10dp" />
 
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recycler_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@id/button"
             android:scrollbars="vertical" />
 
     </RelativeLayout>

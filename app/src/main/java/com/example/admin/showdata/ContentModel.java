@@ -8,6 +8,7 @@ import java.util.List;
  */
 
 public class ContentModel {
+    
     private String title;
     private String description;
     public int imageId;
@@ -38,7 +39,7 @@ public class ContentModel {
     }
 
     public void setDescription(String description) {
-        this.description= description;
+        this.description = description;
     }
 
     public void setImageId(int imageId) {

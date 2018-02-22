@@ -16,7 +16,7 @@ import java.util.List;
  */
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> {
-    List<ContentModel>  content_list= Collections.emptyList();
+    List<ContentModel> content_list = Collections.emptyList();
     Context context;
 
     public RecyclerViewAdapter(List<ContentModel> content_list, Context context) {
@@ -26,8 +26,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_row,parent,false);
-        ViewHolder holder= new ViewHolder(v);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_row, parent, false);
+        ViewHolder holder = new ViewHolder(v);
         return holder;
     }
 
@@ -41,9 +41,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     @Override
     public int getItemCount() {
-            return content_list.size();
+        return content_list.size();
     }
-
 
 
     protected class ViewHolder extends RecyclerView.ViewHolder {
