@@ -26,7 +26,7 @@ public class DownloadData {
     List<ContentModel> dataList;
 
 
-    public List<ContentModel> getdatafromurl(String passed_url) {
+    public List<ContentModel> getDataFromUrl(String passed_url) {
         StringBuilder result = new StringBuilder();
         try {
             // getting url

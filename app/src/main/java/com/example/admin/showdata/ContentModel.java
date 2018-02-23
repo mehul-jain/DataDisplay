@@ -1,8 +1,5 @@
 package com.example.admin.showdata;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * Created by admin on 15-02-2018.
  */

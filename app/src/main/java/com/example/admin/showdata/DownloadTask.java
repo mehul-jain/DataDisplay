@@ -17,20 +17,18 @@ public class DownloadTask extends AsyncTask<String, Integer, List<ContentModel>>
 
     @Override
     protected void onPreExecute() {
-//        super.onPreExecute();
         taskListener.onTaskStarted();
     }
 
     @Override
     protected void onPostExecute(List<ContentModel> content_models) {
-//        super.onPostExecute(content_models);
         taskListener.onTaskFinished(content_models);
     }
 
     @Override
     protected List<ContentModel> doInBackground(String... url) {
         DownloadData downloadData = new DownloadData();
-        List<ContentModel> data = downloadData.getdatafromurl(url[0]);
+        List<ContentModel> data = downloadData.getDataFromUrl(url[0]);
         return data;
     }
 }
