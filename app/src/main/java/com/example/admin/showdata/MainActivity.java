@@ -14,6 +14,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
@@ -24,7 +25,8 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity implements TaskListener {
     private ContentLoadingProgressBar contentLoadingProgressBar;
     private DrawerLayout drawerLayout;
-    private  NavigationView navigationView;
+    private NavigationView navigationView;
+
     @Override
     public void onTaskStarted() {
         contentLoadingProgressBar = (ContentLoadingProgressBar) findViewById(R.id.loader);
@@ -33,10 +35,10 @@ public class MainActivity extends AppCompatActivity implements TaskListener {
 
     @Override
     public void onTaskFinished(List<ContentModel> list) {
-        if(contentLoadingProgressBar!=null)
+        if (contentLoadingProgressBar != null)
             contentLoadingProgressBar.hide();
         Log.d("fetched data", "" + list);
-        if(list !=null && !list.isEmpty()) {
+        if (list != null && !list.isEmpty()) {
             // setting Recycler View
             RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
             RecyclerViewAdapter recyclerViewAdapter = new RecyclerViewAdapter(list, getApplication());
@@ -54,9 +56,10 @@ public class MainActivity extends AppCompatActivity implements TaskListener {
 
         // setting image from url in header
         navigationView = findViewById(R.id.nav_view);
-        View header=navigationView.getHeaderView(0);
-        ImageView imageView= (ImageView) header.findViewById(R.id.profile_image);
-        new ImageLoadTask(imageView,this).execute("http://imgsv.imaging.nikon.com/lineup/lens/zoom/normalzoom/af-s_dx_18-140mmf_35-56g_ed_vr/img/sample/sample1_l.jpg");
+        View header = navigationView.getHeaderView(0);
+        ImageView imageView = (ImageView) header.findViewById(R.id.profile_image);
+
+        new ImageLoadTask(imageView, MainActivity.this, header.findViewById(R.id.profile_image_loader)).execute("http://imgsv.imaging.nikon.com/lineup/lens/zoom/normalzoom/af-s_dx_18-140mmf_35-56g_ed_vr/img/sample/sample1_l.jpg");
 
         // get id of drawer layout
         drawerLayout = findViewById(R.id.drawer_layout);
@@ -64,9 +67,10 @@ public class MainActivity extends AppCompatActivity implements TaskListener {
         // action bar
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        toolbar.showOverflowMenu();
 
         //setting menu button on action bar
-        ActionBar actionBar= getSupportActionBar();
+        ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setHomeAsUpIndicator(R.drawable.ic_menu);
 
@@ -78,7 +82,7 @@ public class MainActivity extends AppCompatActivity implements TaskListener {
                         item.getTitle();
                         item.setChecked(true);
                         drawerLayout.closeDrawers();
-                        Toast.makeText(getApplicationContext(),item.getTitle()+" clicked",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), item.getTitle() + " clicked", Toast.LENGTH_SHORT).show();
                         return true;
                     }
                 }
@@ -87,18 +91,22 @@ public class MainActivity extends AppCompatActivity implements TaskListener {
     }
 
     @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.toolbar_menu, menu);
+        return true;
+    }
+
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()){
+        switch (item.getItemId()) {
             case android.R.id.home:
                 drawerLayout.openDrawer(GravityCompat.START);
+                return true;
+            case R.id.profile_button:
+                Intent intent = new Intent(MainActivity.this, ProfileActivity.class);
+                startActivity(intent);
                 return true;
         }
         return super.onOptionsItemSelected(item);
     }
-
-    public void sendMessage(View view) {
-        Intent intent = new Intent(MainActivity.this, ProfileActivity.class);
-        startActivity(intent);
-    }
-
 }

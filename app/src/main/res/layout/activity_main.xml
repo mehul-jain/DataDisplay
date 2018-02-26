@@ -22,24 +22,15 @@
             android:theme="@style/ThemeOverlay.AppCompat.ActionBar" />
 
 
-        <!--<Button-->
-            <!--android:id="@+id/button"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_alignParentRight="true"-->
-            <!--android:onClick="sendMessage"-->
-            <!--android:padding="10dp"-->
-            <!--android:text="profile" />-->
-
         <android.support.v4.widget.ContentLoadingProgressBar
             android:id="@+id/loader"
             style="?android:attr/progressBarStyleLarge"
             android:layout_width="50dp"
             android:layout_height="50dp"
+            android:layout_below="@+id/toolbar"
             android:layout_centerHorizontal="true"
             android:layout_gravity="center_vertical"
-            android:layout_marginTop="10dp"
-            android:layout_below="@+id/toolbar"/>
+            android:layout_marginTop="10dp" />
 
 
         <android.support.v7.widget.RecyclerView
@@ -52,13 +43,13 @@
     </RelativeLayout>
 
     // navigation drawer
+
     <android.support.design.widget.NavigationView
         android:id="@+id/nav_view"
         android:layout_width="wrap_content"
         android:layout_height="fill_parent"
         android:layout_gravity="left"
         android:fitsSystemWindows="true"
-        app:menu="@menu/drawer_view"
         app:headerLayout="@layout/nav_header"
-        />
+        app:menu="@menu/drawer_view" />
 </android.support.v4.widget.DrawerLayout>
