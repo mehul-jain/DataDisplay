@@ -6,7 +6,9 @@ import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
+import android.support.v4.widget.ContentLoadingProgressBar;
 import android.util.Log;
+import android.view.View;
 import android.widget.ImageView;
 
 import java.io.IOException;
@@ -21,12 +23,20 @@ import java.net.URL;
 
 public class ImageLoadTask extends AsyncTask<String, Void, Bitmap> {
     private ImageView imageView;
-    HttpURLConnection connection;
+    private HttpURLConnection connection;
     private Context context;
+    private ContentLoadingProgressBar contentLoadingProgressBar;
 
-    public ImageLoadTask(ImageView imageView, Context context) {
+    public ImageLoadTask(ImageView imageView, Context context, View view) {
         this.imageView = imageView;
         this.context = context;
+        this.contentLoadingProgressBar = (ContentLoadingProgressBar) view;
+    }
+
+    @Override
+    protected void onPreExecute() {
+        super.onPreExecute();
+        contentLoadingProgressBar.show();
     }
 
     @Override
@@ -54,6 +64,7 @@ public class ImageLoadTask extends AsyncTask<String, Void, Bitmap> {
     @Override
     protected void onPostExecute(Bitmap result) {
         super.onPostExecute(result);
+        contentLoadingProgressBar.hide();
         RoundedBitmapDrawable roundedBitmapDrawable = RoundedBitmapDrawableFactory.create(context.getResources(), result);
         roundedBitmapDrawable.setCircular(true);
         imageView.setImageDrawable(roundedBitmapDrawable);
