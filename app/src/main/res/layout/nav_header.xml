@@ -9,16 +9,15 @@
 
     <ImageView
         android:id="@+id/profile_image"
-        android:layout_gravity="center_vertical"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        />
+        android:layout_gravity="center_vertical" />
+
     <android.support.v4.widget.ContentLoadingProgressBar
         android:id="@+id/profile_image_loader"
         style="?android:attr/progressBarStyleLarge"
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:layout_gravity="center_vertical"
-        android:layout_margin="5dp"
-        />
+        android:layout_margin="5dp" />
 </RelativeLayout>
