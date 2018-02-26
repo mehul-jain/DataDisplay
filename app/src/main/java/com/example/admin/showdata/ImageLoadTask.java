@@ -1,8 +1,11 @@
 package com.example.admin.showdata;
 
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 import android.util.Log;
 import android.widget.ImageView;
 
@@ -19,9 +22,11 @@ import java.net.URL;
 public class ImageLoadTask extends AsyncTask<String, Void, Bitmap> {
     private ImageView imageView;
     HttpURLConnection connection;
+    private Context context;
 
-    public ImageLoadTask(ImageView imageView) {
+    public ImageLoadTask(ImageView imageView, Context context) {
         this.imageView = imageView;
+        this.context = context;
     }
 
     @Override
@@ -49,6 +54,8 @@ public class ImageLoadTask extends AsyncTask<String, Void, Bitmap> {
     @Override
     protected void onPostExecute(Bitmap result) {
         super.onPostExecute(result);
-        imageView.setImageBitmap(result);
+        RoundedBitmapDrawable roundedBitmapDrawable = RoundedBitmapDrawableFactory.create(context.getResources(), result);
+        roundedBitmapDrawable.setCircular(true);
+        imageView.setImageDrawable(roundedBitmapDrawable);
     }
 }

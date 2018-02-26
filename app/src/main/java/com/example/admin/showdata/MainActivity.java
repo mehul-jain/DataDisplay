@@ -56,7 +56,7 @@ public class MainActivity extends AppCompatActivity implements TaskListener {
         navigationView = findViewById(R.id.nav_view);
         View header=navigationView.getHeaderView(0);
         ImageView imageView= (ImageView) header.findViewById(R.id.profile_image);
-        new ImageLoadTask(imageView).execute("http://imgsv.imaging.nikon.com/lineup/lens/zoom/normalzoom/af-s_dx_18-140mmf_35-56g_ed_vr/img/sample/sample1_l.jpg");
+        new ImageLoadTask(imageView,this).execute("http://imgsv.imaging.nikon.com/lineup/lens/zoom/normalzoom/af-s_dx_18-140mmf_35-56g_ed_vr/img/sample/sample1_l.jpg");
 
         // get id of drawer layout
         drawerLayout = findViewById(R.id.drawer_layout);
