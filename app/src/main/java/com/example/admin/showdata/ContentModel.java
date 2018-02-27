@@ -1,13 +1,11 @@
 package com.example.admin.showdata;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * Created by admin on 15-02-2018.
  */
 
 public class ContentModel {
+    
     private String title;
     private String description;
     public int imageId;
@@ -38,7 +36,7 @@ public class ContentModel {
     }
 
     public void setDescription(String description) {
-        this.description= description;
+        this.description = description;
     }
 
     public void setImageId(int imageId) {

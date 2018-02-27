@@ -1,49 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
+
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:padding="15dp">
+
         <TextView
-            android:text="Name:"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="Name:"
             android:textAppearance="?android:attr/textAppearanceLarge" />
+
         <EditText
             android:id="@+id/et_user_name"
-            android:paddingTop="5dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Enter name" />
+            android:hint="Enter name"
+            android:paddingTop="5dp" />
 
         <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:paddingTop="10dp"
             android:text="Age:"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge" />
+
         <EditText
             android:id="@+id/et_user_age"
-            android:paddingTop="5dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Enter age" />
+            android:hint="Enter age"
+            android:paddingTop="5dp" />
 
         <TextView
-            android:paddingTop="10dp"
-            android:text="Mobile No:"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:paddingTop="10dp"
+            android:text="Mobile No:"
             android:textAppearance="?android:attr/textAppearanceLarge" />
+
         <EditText
             android:id="@+id/et_user_mobile"
-            android:paddingTop="5dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Enter Mobile no" />
+            android:hint="Enter Mobile no"
+            android:paddingTop="5dp" />
 
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>
