@@ -1,6 +1,8 @@
 package com.example.admin.showdata;
 
 import android.os.AsyncTask;
+
+import java.lang.ref.WeakReference;
 import java.util.List;
 
 /**
@@ -9,20 +11,23 @@ import java.util.List;
 
 public class DownloadTask extends AsyncTask<String, Integer, List<ContentModel>> {
 
-    private final TaskListener taskListener;
+    private WeakReference<TaskListener> taskListener;
 
     public DownloadTask(TaskListener taskListener) {
-        this.taskListener = taskListener;
+
+        this.taskListener = new WeakReference<TaskListener>(taskListener);
     }
 
     @Override
     protected void onPreExecute() {
-        taskListener.onTaskStarted();
+            if (taskListener.get() != null)
+            taskListener.get().onTaskStarted();
     }
 
     @Override
     protected void onPostExecute(List<ContentModel> content_models) {
-        taskListener.onTaskFinished(content_models);
+        if (taskListener.get() != null)
+            taskListener.get().onTaskFinished(content_models);
     }
 
     @Override
