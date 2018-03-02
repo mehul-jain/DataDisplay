@@ -17,11 +17,13 @@ import java.util.List;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> {
     List<ContentModel> content_list = Collections.emptyList();
-    Context context;
+    private Context context;
+    private ProductListFragment.OnItemSelectedListener onItemSelectedListener;
 
     public RecyclerViewAdapter(List<ContentModel> content_list, Context context) {
         this.content_list = content_list;
         this.context = context;
+        this.onItemSelectedListener = (ProductListFragment.OnItemSelectedListener) context;
     }
 
     @Override
@@ -50,11 +52,22 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         TextView title;
         TextView description;
 
-        public ViewHolder(View itemView) {
+        public ViewHolder(final View itemView) {
             super(itemView);
             this.imageView = itemView.findViewById(R.id.imageView);
             this.title = itemView.findViewById(R.id.title);
             this.description = itemView.findViewById(R.id.description);
+
+            // setting on click listener
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int pos = getAdapterPosition();
+                    // going to the activity to load the details fragment
+                    // communicating with the activity using listener
+                    onItemSelectedListener.onItemSelected(content_list.get(pos));
+                }
+            });
         }
     }
 }

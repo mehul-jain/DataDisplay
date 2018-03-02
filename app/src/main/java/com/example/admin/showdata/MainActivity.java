@@ -1,59 +1,38 @@
 package com.example.admin.showdata;
 
+import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
-import android.support.v4.widget.ContentLoadingProgressBar;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
-import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import java.util.List;
+public class MainActivity extends AppCompatActivity implements ProductListFragment.OnItemSelectedListener {
 
-public class MainActivity extends AppCompatActivity implements TaskListener {
-    private ContentLoadingProgressBar contentLoadingProgressBar;
     private DrawerLayout drawerLayout;
     private NavigationView navigationView;
 
-    @Override
-    public void onTaskStarted() {
-        contentLoadingProgressBar = (ContentLoadingProgressBar) findViewById(R.id.loader);
-        contentLoadingProgressBar.show();
-    }
-
-    @Override
-    public void onTaskFinished(List<ContentModel> list) {
-        if (contentLoadingProgressBar != null)
-            contentLoadingProgressBar.hide();
-        Log.d("fetched data", "" + list);
-        if (list != null && !list.isEmpty()) {
-            // setting Recycler View
-            RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
-            RecyclerViewAdapter recyclerViewAdapter = new RecyclerViewAdapter(list, getApplication());
-            recyclerView.setAdapter(recyclerViewAdapter);
-            recyclerView.setLayoutManager(new LinearLayoutManager(MainActivity.this));
-        }
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        // getting data from the api
-        new DownloadTask(this).execute("http://www.mocky.io/v2/5a85f4a33100006800253180");
 
+        if (savedInstanceState == null) {
+            FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+            ProductListFragment productListFragment = new ProductListFragment();
+            fragmentTransaction.replace(R.id.content_fragment, productListFragment);
+            fragmentTransaction.addToBackStack(null).commit();
+        }
         // setting image from url in header
         navigationView = findViewById(R.id.nav_view);
         View header = navigationView.getHeaderView(0);
@@ -108,5 +87,28 @@ public class MainActivity extends AppCompatActivity implements TaskListener {
                 return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onItemSelected(ContentModel contentModel) {
+        // load the product details Fragment
+        ProductDetailFragment productDetailFragment = new ProductDetailFragment();
+
+        //communicating with fragment using bundle
+        Bundle bundle = new Bundle();
+        bundle.putParcelable("Product", contentModel);
+        productDetailFragment.setArguments(bundle);
+
+        // replacing fragment
+        getFragmentManager().beginTransaction().replace(R.id.content_fragment, productDetailFragment).addToBackStack(null).commit();
+    }
+
+    @Override
+    public void onBackPressed()
+    {
+        if(getFragmentManager().getBackStackEntryCount() > 0)
+            getFragmentManager().popBackStack();
+        else
+            super.onBackPressed();
     }
 }

@@ -1,11 +1,24 @@
 package com.example.admin.showdata;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 /**
  * Created by admin on 15-02-2018.
  */
 
-public class ContentModel {
-    
+public class ContentModel implements Parcelable {
+
+    public static final Parcelable.Creator CREATOR = new Parcelable.Creator() {
+        public ContentModel createFromParcel(Parcel in) {
+            return new ContentModel(in);
+        }
+
+        public ContentModel[] newArray(int size) {
+            return new ContentModel[size];
+        }
+    };
+
     private String title;
     private String description;
     public int imageId;
@@ -17,6 +30,12 @@ public class ContentModel {
         this.title = title;
         this.description = description;
         this.imageId = imageId;
+    }
+
+    public ContentModel(Parcel parcel) {
+        title = parcel.readString();
+        description = parcel.readString();
+        imageId = parcel.readInt();
     }
 
     public String getTitle() {
@@ -43,4 +62,24 @@ public class ContentModel {
         this.imageId = imageId;
     }
 
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(this.title);
+        dest.writeString(this.description);
+        dest.writeInt(this.imageId);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public String toString() {
+        return "ContentModel{" +
+                "title='" + title + '\'' +
+                ", description='" + description + '\'' +
+                ", imageId=" + imageId +
+                '}';
+    }
 }
