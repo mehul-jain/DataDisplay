@@ -20,10 +20,22 @@
             android:minHeight="?attr/actionBarSize"
             android:theme="@style/ThemeOverlay.AppCompat.ActionBar" />
 
-        <FrameLayout
-            android:id="@+id/content_fragment"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+        <android.support.v4.view.ViewPager
+            android:id="@+id/vpPager"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent">
+
+            <android.support.v4.view.PagerTabStrip
+                android:id="@+id/pager_header"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="top"
+                android:background="@color/colorGray"
+                android:paddingBottom="4dp"
+                android:paddingTop="4dp"
+                android:textSize="15dp"></android.support.v4.view.PagerTabStrip>
+        </android.support.v4.view.ViewPager>
+
     </LinearLayout>
 
 

@@ -1,36 +1,50 @@
-package com.example.admin.showdata;
+package com.example.admin.showdata.fragment;
 
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.os.Handler;
 import android.preference.PreferenceManager;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.example.admin.showdata.R;
+
 /**
- * Created by admin on 16-02-2018.
+ * Created by admin on 08-03-2018.
  */
 
-public class ProfileActivity extends AppCompatActivity {
+public class ProfileFragment extends Fragment {
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_profile);
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+    }
+
+    @Nullable
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.activity_profile, container, false);
+        return view;
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity().getApplicationContext());
         if (!sharedPreferences.contains("NAME") || !sharedPreferences.contains("AGE") || !sharedPreferences.contains("MOBILE"))
             displayResultDialog();
         updateProfile();
     }
 
     private void displayResultDialog() {
-        Context context = ProfileActivity.this;
+        Context context = ProfileFragment.this.getActivity();
         String title = "Hide Treasure";
         LayoutInflater li = LayoutInflater.from(context);
         View dialogView = li.inflate(R.layout.dialog_profile, null);
@@ -43,7 +57,7 @@ public class ProfileActivity extends AppCompatActivity {
                 "SUBMIT", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+                        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity().getApplicationContext());
                         SharedPreferences.Editor editor = sharedPreferences.edit();
                         editor.putString("NAME", editTextName.getText().toString().trim());
                         editor.putString("AGE", editTextAge.getText().toString().trim());
@@ -54,12 +68,11 @@ public class ProfileActivity extends AppCompatActivity {
                 });
         ad.show();
     }
-
     private void updateProfile() {
-        TextView textViewName = (TextView) findViewById(R.id.name);
-        TextView textViewAge = (TextView) findViewById(R.id.age);
-        TextView textViewMobile = (TextView) findViewById(R.id.mobile);
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        TextView textViewName = (TextView)getView().findViewById(R.id.name);
+        TextView textViewAge = (TextView) getView().findViewById(R.id.age);
+        TextView textViewMobile = (TextView) getView().findViewById(R.id.mobile);
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity().getApplicationContext());
         if (sharedPreferences.contains("NAME"))
             textViewName.setText(sharedPreferences.getString("NAME", "default_name"));
         if (sharedPreferences.contains("AGE"))
@@ -67,4 +80,5 @@ public class ProfileActivity extends AppCompatActivity {
         if (sharedPreferences.contains("MOBILE"))
             textViewMobile.setText(sharedPreferences.getString("MOBILE", "default_mobile"));
     }
+
 }

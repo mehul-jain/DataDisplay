@@ -1,6 +1,6 @@
-package com.example.admin.showdata;
+package com.example.admin.showdata.fragment;
 
-import android.app.Fragment;
+import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.ContentLoadingProgressBar;
@@ -11,6 +11,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.admin.showdata.apiService.DownloadTask;
+import com.example.admin.showdata.R;
+import com.example.admin.showdata.recyclerview.RecyclerViewAdapter;
+import com.example.admin.showdata.apiService.callback.TaskListener;
+import com.example.admin.showdata.model.ContentModel;
+
 import java.util.List;
 
 /**
@@ -18,10 +24,10 @@ import java.util.List;
  */
 
 public class ProductListFragment extends Fragment implements TaskListener {
-
     private ContentLoadingProgressBar contentLoadingProgressBar;
     private DownloadTask downloadTask;
     private View fragmentView;
+
     @Override
     public void onTaskStarted() {
         contentLoadingProgressBar = (ContentLoadingProgressBar) fragmentView.findViewById(R.id.loader);
@@ -50,13 +56,10 @@ public class ProductListFragment extends Fragment implements TaskListener {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-
         fragmentView = inflater.inflate(R.layout.product_list_frag, container, false);
-
         // getting data from the api
         downloadTask = new DownloadTask(this);
         downloadTask.execute("http://www.mocky.io/v2/5a85f4a33100006800253180");
-//        setRetainInstance(true);
         return fragmentView;
     }
 

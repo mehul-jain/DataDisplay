@@ -1,4 +1,4 @@
-package com.example.admin.showdata;
+package com.example.admin.showdata.model;
 
 import android.os.Parcel;
 import android.os.Parcelable;

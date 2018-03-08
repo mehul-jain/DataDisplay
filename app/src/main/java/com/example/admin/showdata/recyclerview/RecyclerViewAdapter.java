@@ -1,4 +1,4 @@
-package com.example.admin.showdata;
+package com.example.admin.showdata.recyclerview;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -7,6 +7,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.example.admin.showdata.R;
+import com.example.admin.showdata.fragment.ProductListFragment;
+import com.example.admin.showdata.model.ContentModel;
 
 import java.util.Collections;
 import java.util.List;
@@ -63,6 +67,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                 @Override
                 public void onClick(View v) {
                     int pos = getAdapterPosition();
+
                     // going to the activity to load the details fragment
                     // communicating with the activity using listener
                     onItemSelectedListener.onItemSelected(content_list.get(pos));

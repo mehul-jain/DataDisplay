@@ -1,6 +1,6 @@
-package com.example.admin.showdata;
+package com.example.admin.showdata.fragment;
 
-import android.app.Fragment;
+import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -8,6 +8,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.example.admin.showdata.R;
+import com.example.admin.showdata.model.ContentModel;
 
 /**
  * Created by admin on 02-03-2018.

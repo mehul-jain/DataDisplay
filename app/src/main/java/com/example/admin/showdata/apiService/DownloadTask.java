@@ -1,6 +1,9 @@
-package com.example.admin.showdata;
+package com.example.admin.showdata.apiService;
 
 import android.os.AsyncTask;
+
+import com.example.admin.showdata.apiService.callback.TaskListener;
+import com.example.admin.showdata.model.ContentModel;
 
 import java.lang.ref.WeakReference;
 import java.util.List;

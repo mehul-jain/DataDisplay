@@ -1,10 +1,13 @@
-package com.example.admin.showdata;
+package com.example.admin.showdata.activity;
 
-import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.GravityCompat;
+import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -16,10 +19,19 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.example.admin.showdata.apiService.ImageLoadTask;
+import com.example.admin.showdata.fragment.ProductDetailFragment;
+import com.example.admin.showdata.fragment.ProductListFragment;
+import com.example.admin.showdata.fragment.ProfileFragment;
+import com.example.admin.showdata.R;
+import com.example.admin.showdata.fragment.RootFragment;
+import com.example.admin.showdata.model.ContentModel;
+
 public class MainActivity extends AppCompatActivity implements ProductListFragment.OnItemSelectedListener {
 
     private DrawerLayout drawerLayout;
     private NavigationView navigationView;
+    private FragmentPagerAdapter fragmentPagerAdapter;
 
 
     @Override
@@ -28,11 +40,11 @@ public class MainActivity extends AppCompatActivity implements ProductListFragme
         setContentView(R.layout.activity_main);
 
         if (savedInstanceState == null) {
-            FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
-            ProductListFragment productListFragment = new ProductListFragment();
-            fragmentTransaction.replace(R.id.content_fragment, productListFragment);
-            fragmentTransaction.addToBackStack(null).commit();
+            ViewPager viewPager = (ViewPager) findViewById(R.id.vpPager);
+            fragmentPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
+            viewPager.setAdapter(fragmentPagerAdapter);
         }
+
         // setting image from url in header
         navigationView = findViewById(R.id.nav_view);
         View header = navigationView.getHeaderView(0);
@@ -81,9 +93,8 @@ public class MainActivity extends AppCompatActivity implements ProductListFragme
             case android.R.id.home:
                 drawerLayout.openDrawer(GravityCompat.START);
                 return true;
-            case R.id.profile_button:
-                Intent intent = new Intent(MainActivity.this, ProfileActivity.class);
-                startActivity(intent);
+            case R.id.settings_button:
+                startActivityForResult(new Intent(android.provider.Settings.ACTION_SETTINGS), 0);
                 return true;
         }
         return super.onOptionsItemSelected(item);
@@ -100,15 +111,51 @@ public class MainActivity extends AppCompatActivity implements ProductListFragme
         productDetailFragment.setArguments(bundle);
 
         // replacing fragment
-        getFragmentManager().beginTransaction().replace(R.id.content_fragment, productDetailFragment).addToBackStack(null).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.content_fragment, productDetailFragment).addToBackStack(null).commit();
     }
 
     @Override
-    public void onBackPressed()
-    {
-        if(getFragmentManager().getBackStackEntryCount() > 0)
+    public void onBackPressed() {
+        if (getFragmentManager().getBackStackEntryCount() > 0)
             getFragmentManager().popBackStack();
         else
             super.onBackPressed();
+    }
+
+    public class ViewPagerAdapter extends FragmentPagerAdapter {
+        private int NUM_ITEMS = 2;
+
+        public ViewPagerAdapter(FragmentManager fm) {
+            super(fm);
+        }
+
+        @Override
+        public int getCount() {
+            return NUM_ITEMS;
+        }
+
+        @Override
+        public Fragment getItem(int position) {
+            switch (position) {
+                case 0:
+                    return new RootFragment();
+                case 1:
+                    return new ProfileFragment();
+                default:
+                    return null;
+            }
+        }
+
+        @Override
+        public CharSequence getPageTitle(int position) {
+            switch (position) {
+                case 0:
+                    return "Feed";
+                case 1:
+                    return "Profile";
+                default:
+                    return null;
+            }
+        }
     }
 }
