@@ -1,4 +1,4 @@
-package com.example.admin.showdata;
+package com.example.admin.showdata.recyclerview;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -7,6 +7,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.example.admin.showdata.R;
+import com.example.admin.showdata.fragment.ProductListFragment;
+import com.example.admin.showdata.model.ContentModel;
 
 import java.util.Collections;
 import java.util.List;
@@ -17,11 +21,13 @@ import java.util.List;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> {
     List<ContentModel> content_list = Collections.emptyList();
-    Context context;
+    private Context context;
+    private ProductListFragment.OnItemSelectedListener onItemSelectedListener;
 
     public RecyclerViewAdapter(List<ContentModel> content_list, Context context) {
         this.content_list = content_list;
         this.context = context;
+        this.onItemSelectedListener = (ProductListFragment.OnItemSelectedListener) context;
     }
 
     @Override
@@ -50,11 +56,23 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         TextView title;
         TextView description;
 
-        public ViewHolder(View itemView) {
+        public ViewHolder(final View itemView) {
             super(itemView);
             this.imageView = itemView.findViewById(R.id.imageView);
             this.title = itemView.findViewById(R.id.title);
             this.description = itemView.findViewById(R.id.description);
+
+            // setting on click listener
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int pos = getAdapterPosition();
+
+                    // going to the activity to load the details fragment
+                    // communicating with the activity using listener
+                    onItemSelectedListener.onItemSelected(content_list.get(pos));
+                }
+            });
         }
     }
 }

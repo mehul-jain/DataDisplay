@@ -1,6 +1,9 @@
-package com.example.admin.showdata;
+package com.example.admin.showdata.apiService;
 
 import android.util.Log;
+
+import com.example.admin.showdata.R;
+import com.example.admin.showdata.model.ContentModel;
 
 import org.json.JSONArray;
 import org.json.JSONException;
